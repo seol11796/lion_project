@@ -15,4 +15,9 @@ public class MainController {
         return "Hi.  welcome to sbb";
     }
 
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/question/list";
+    }
+
 }
