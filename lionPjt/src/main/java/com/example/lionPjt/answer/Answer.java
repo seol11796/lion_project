@@ -1,5 +1,6 @@
 package com.example.lionPjt.answer;
 
+import com.example.lionPjt.SiteUser.SiteUser;
 import com.example.lionPjt.question.Question;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,4 +23,7 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 }

@@ -1,5 +1,6 @@
 package com.example.lionPjt.question;
 
+import com.example.lionPjt.SiteUser.SiteUser;
 import com.example.lionPjt.answer.Answer;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,11 @@ public class Question {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
+
+
+    @ManyToOne
+    private SiteUser author;
+
 
 
     public void addAnswer(Answer a) {
