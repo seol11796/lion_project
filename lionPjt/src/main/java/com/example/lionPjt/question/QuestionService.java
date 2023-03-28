@@ -20,31 +20,24 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
-    public Page<Question> getList(int page){
-
+    public Page<Question> getList(int page) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("created"));
-        // page - 조회할 페이지의 번호, 10 - 한 페이지에 보여줄 게시물의 갯수
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         return this.questionRepository.findAll(pageable);
-
-
     }
 
-    public Question getQuestion(Integer id){
+    public Question getQuestion(Integer id) {
         Optional<Question> question = this.questionRepository.findById(id);
-        if(question.isPresent()){
+        if (question.isPresent()) {
             return question.get();
-        }else{
-          throw new DataNotFoundException("question not found");
+        } else {
+            throw new DataNotFoundException("question not found");
         }
     }
 
-
-
-
-    public void create(String subject, String content, SiteUser user){
-        Question  q = new Question();
+    public void create(String subject, String content, SiteUser user) {
+        Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
         q.setCreated(LocalDateTime.now());
@@ -52,4 +45,14 @@ public class QuestionService {
         this.questionRepository.save(q);
     }
 
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setModifyDate(LocalDateTime.now());
+        this.questionRepository.save(question);
+    }
+
+    public void delete(Question question) {
+        this.questionRepository.delete(question);
+    }
 }

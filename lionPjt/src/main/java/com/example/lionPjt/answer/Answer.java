@@ -21,6 +21,8 @@ public class Answer {
 
     private LocalDateTime created;
 
+    private LocalDateTime modifyDate;
+
     @ManyToOne
     private Question question;
 
