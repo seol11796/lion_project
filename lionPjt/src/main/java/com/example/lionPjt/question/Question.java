@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,10 +32,13 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
 
-
+    // 추천인 (voter) , List가 아닌 Set으로 한 이유 - 추천인은 중복되면 x
     @ManyToOne
     private SiteUser author;
 
+
+    @ManyToMany
+    Set<SiteUser> voter;
 
 
     public void addAnswer(Answer a) {
