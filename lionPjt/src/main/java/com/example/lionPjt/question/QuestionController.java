@@ -3,6 +3,7 @@ package com.example.lionPjt.question;
 import com.example.lionPjt.SiteUser.SiteUser;
 import com.example.lionPjt.SiteUser.UserService;
 import com.example.lionPjt.answer.AnswerForm;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 

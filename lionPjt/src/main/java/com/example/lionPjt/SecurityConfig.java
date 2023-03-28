@@ -22,39 +22,32 @@ public class SecurityConfig {
         http.authorizeHttpRequests().requestMatchers(
                         new AntPathRequestMatcher("/**")).permitAll()
                 .and()
-                    .csrf().ignoringRequestMatchers(
+                .csrf().ignoringRequestMatchers(
                         new AntPathRequestMatcher("/h2-console/**"))
                 .and()
-                    .headers()
-                    .addHeaderWriter(new XFrameOptionsHeaderWriter(
+                .headers()
+                .addHeaderWriter(new XFrameOptionsHeaderWriter(
                         XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
                 .and()
-                    .formLogin()
-                    .loginPage("/user/login")
-                    .defaultSuccessUrl("/")
+                .formLogin()
+                .loginPage("/user/login")
+                .defaultSuccessUrl("/")
                 .and()
-                    .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                    .logoutSuccessUrl("/")
-                    .invalidateHttpSession(true)
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
         ;
-
         return http.build();
     }
-
 
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 스프링 시큐리티 인증을 담당. 빈 생성 시 UserSecurityService와 PasswordEncoder가 자동 설정됨.
     @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception
-    {
-        {
-            return authenticationConfiguration.getAuthenticationManager();
-        }
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
-
 }

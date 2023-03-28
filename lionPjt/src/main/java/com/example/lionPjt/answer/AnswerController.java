@@ -4,6 +4,7 @@ import com.example.lionPjt.SiteUser.SiteUser;
 import com.example.lionPjt.SiteUser.UserService;
 import com.example.lionPjt.question.Question;
 import com.example.lionPjt.question.QuestionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,9 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.validation.Valid;
+import jakarta.persistence.*;
 import java.security.Principal;
+
 @RequestMapping("/answer")
 @RequiredArgsConstructor
 @Controller
